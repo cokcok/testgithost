@@ -3,6 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import {firebase} from '@firebase/app';
+import {environment} from '../environments/environment';
+import {NotiService} from './api/noti.service';
+
+
 
 @Component({
   selector: 'app-root',
@@ -12,12 +17,12 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
-    {
+       {
       title: 'Inbox',
       url: '/folder/Inbox',
       icon: 'mail'
     },
-    {
+  {
       title: 'Outbox',
       url: '/folder/Outbox',
       icon: 'paper-plane'
@@ -41,7 +46,7 @@ export class AppComponent implements OnInit {
       title: 'Spam',
       url: '/folder/Spam',
       icon: 'warning'
-    },
+    }, 
     {
       title: 'About',
       url: '/about',
@@ -53,7 +58,8 @@ export class AppComponent implements OnInit {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private notificationsService:NotiService
   ) {
     this.initializeApp();
   }
@@ -65,10 +71,18 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     const path = window.location.pathname.split('folder/')[1];
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+    firebase.initializeApp(environment.firebase);
+    await this.notificationsService.init();
   }
+
+  ngAfterViewInit() {
+    this.platform.ready().then(async () => {
+       await this.notificationsService.requestPermission();
+    });
+}
 }
