@@ -6,3 +6,4 @@ firebase.initializeApp({
 });
 
 const messaging = firebase.messaging();
+/* messaging.usePublicVapidKey('BIGDHEwddFF0ypuKGidQ8OS-b3LeiAMjfkK_X5ljbH_Dt7fld6uct2QblCqciBfTVyF4B33inCnhvlUiu0fCyJY'); */

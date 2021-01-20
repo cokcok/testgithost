@@ -6,6 +6,7 @@ import { AlertController, LoadingController } from '@ionic/angular';
 })
 export class ConfigService {
   public ip = 'http://localhost:8012/pdo/';
+  public token;
   constructor(private loadingController: LoadingController,private alertCtrl: AlertController) { }
 
 

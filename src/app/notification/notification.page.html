@@ -1,9 +1,15 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>notification</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+ <ion-item>
+  <ion-label>Default Label</ion-label>
+  <ion-input [(ngModel)]="token"></ion-input>
+</ion-item>
 </ion-content>

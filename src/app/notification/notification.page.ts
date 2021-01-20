@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ConfigService} from '../api/config.service';
 
 @Component({
   selector: 'app-notification',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notification.page.scss'],
 })
 export class NotificationPage implements OnInit {
-
-  constructor() { }
+  token:any;
+  constructor(private configService:ConfigService) { }
 
   ngOnInit() {
+    console.log(this.configService.token);
+    this.token = this.configService.token;
   }
 
 }

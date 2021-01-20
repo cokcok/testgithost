@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
        {
-      title: 'Inbox',
+      title: 'Inboxxxx',
       url: '/folder/Inbox',
       icon: 'mail'
     },
@@ -51,6 +51,11 @@ export class AppComponent implements OnInit {
       title: 'About',
       url: '/about',
       icon: 'person'
+    }, 
+    {
+      title: 'notification',
+      url: '/notification',
+      icon: 'person'
     }
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
@@ -76,8 +81,11 @@ export class AppComponent implements OnInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
-    firebase.initializeApp(environment.firebase);
-    await this.notificationsService.init();
+    if (!firebase.apps[0]) {
+      firebase.initializeApp(environment.firebase);
+      await this.notificationsService.init();
+    }
+    
   }
 
   ngAfterViewInit() {

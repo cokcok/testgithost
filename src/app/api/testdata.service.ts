@@ -10,7 +10,7 @@ import { ConfigService } from './config.service';
 export class TestdataService {
 
   constructor(private http: HttpClient, private config: ConfigService) { }
-
+ 
   getCourse(padding: number, limit: number): Observable<data> {
     const header = { 'Content-Type': 'application/json' };
     const apiUrl = this.config.ip + 'fecthdata_json.php';

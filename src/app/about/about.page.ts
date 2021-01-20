@@ -15,7 +15,7 @@ export class AboutPage implements OnInit {
   sub: Subscription;
   page = 0;maxpadding = 0;limit = 50;
   constructor(private dataService: TestdataService,private configService :ConfigService) { }
-
+ 
   ngOnInit() {
     this.loaddata(this.page);
     
